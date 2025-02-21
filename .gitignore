@@ -1,0 +1,50 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+*.venv
+*.env
+
+# Django-related files
+db.sqlite3
+*.sqlite3
+/media/
+staticfiles/
+*.log
+
+# Django migrations
+**/migrations/*
+!**/migrations/__init__.py
+
+# VS Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Python environment files
+*.env
+*.ini
+*.cfg
+*.bak
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+*.py,cover
+
+# Cache
+*.cache
+.npm/
