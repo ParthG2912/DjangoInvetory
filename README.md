@@ -24,3 +24,9 @@ By default, the server runs at http://127.0.0.1:8000/.
 ```bash
 python manage.py startapp inventory
 ```
+
+# Run Migrations
+```bash
+python manage.py makemigrations inventory
+python manage.py migrate
+```
