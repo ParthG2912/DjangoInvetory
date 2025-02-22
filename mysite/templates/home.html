@@ -1,9 +1,17 @@
-<!DOCTYPE html>
-<html>
-<body>
+{% extends "base.html" %}
 
-<h1>Hello World!</h1>
-<p>Welcome to Inventory!</p>
+{% block title %}Inventory List{% endblock %}
 
-</body>
-</html>
+{% block content %}
+    <h1>Welcome to Inventory!</h1>
+
+    {% if product_list %}
+        <ul>
+        {% for p in product_list %}
+            <li><a href="{% url 'product' p.id %}">{{ p.product_name|upper }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-products">No products are available.</p>
+    {% endif %}
+{% endblock %}
