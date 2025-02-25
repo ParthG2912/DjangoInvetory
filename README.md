@@ -1,31 +1,33 @@
-# Install Django
+# Django Inventory Setup Steps
+
+### Install Django
 ```bash
 pip install django
 ```
-# Verify Django Installation
+### Verify Django Installation
 ```bash
 python -m django --version
 ```
 
-# Create a Django Project
+### Create a Django Project
 ```bash
 mkdir djangoInventory  
 cd djangoInventory  
 django-admin startproject mysite .
 ```
 
-# Start Developement Server
+### Start Developement Server
 ```bash
 python manage.py runserver
 ```
 By default, the server runs at http://127.0.0.1:8000/.
 
-# Create Inventory App
+### Create Inventory App
 ```bash
 python manage.py startapp inventory
 ```
 
-# Run Migrations
+### Run Migrations
 ```bash
 python manage.py makemigrations inventory
 python manage.py migrate
