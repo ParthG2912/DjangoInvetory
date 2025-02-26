@@ -10,4 +10,4 @@ class Products(models.Model):
     last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return f"{self.name} (Tag: {self.tag_number})"
+        return f"{self.product_name} (Tag: {self.tag_no})"
