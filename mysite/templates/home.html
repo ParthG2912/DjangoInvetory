@@ -3,12 +3,78 @@
 {% block title %}Inventory List{% endblock %}
 
 {% block content %}
+    <style>
+        h1 {
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: black;
+            flex: 1; /* Makes the entire item clickable */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .list-item {
+            border: 1px solid black;
+            width: 100%;
+            max-width: 500px;
+            list-style: none;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: background 0.3s, color 0.3s;
+        }        
+
+        .list-item:hover {
+            background: blue;
+        }
+
+        .list-item:hover a {
+            color: white; /* Ensure text is visible on hover */
+        }
+
+        .product-name {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .product-counts {
+            text-align: right;
+        }
+
+        .no-products {
+            font-style: italic;
+            color: red;
+            text-align: center;
+        }
+    </style>
+
     <h1>Welcome to Inventory!</h1>
 
     {% if product_list %}
-        <ul>
-        {% for p in product_list %}
-            <li><a href="{% url 'product' p.id %}">{{ p.product_name|upper }}</a></li>
+        <ul class="list">
+        {% for name, details in product_list.items %}
+            <li class="list-item">
+                <a href="{{ name }}">
+                    <span class="product-name">{{ name }}</span>
+                    <span class="product-counts">
+                        <span>Total: {{ details.total }}</span>
+                        <span>Available: {{ details.available }}</span>
+                    </span>
+                </a>
+            </li>
         {% endfor %}
         </ul>
     {% else %}

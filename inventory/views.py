@@ -2,12 +2,20 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from .models import Products
+from collections import defaultdict
 
 # Create your views here.
 @login_required
 def home(request):
     product_list = Products.objects.order_by("product_name")
-    return render(request, "home.html", {"product_list": product_list})
+
+    res = defaultdict(lambda: {"total": 0, "available": 0})
+
+    for p in product_list:
+        res[p.product_name]["total"] += 1
+        res[p.product_name]["available"] += p.is_available
+
+    return render(request, "home.html", {"product_list": dict(res)})
 
 @login_required
 def product(request, id):
