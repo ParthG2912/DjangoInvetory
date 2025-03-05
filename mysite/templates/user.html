@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+    {% if user %}
+        <h1 style="text-align: center;">{{ user.username }}</h1>
+    {% endif %}
+
+    {% if products %}
+        <ul class="list">
+            {% for p in products|dictsortreversed:"is_available" %}
+                <li class="list-item">
+                    <div class="row">
+                        <span class="tag-no">#{{ p.tag_no }}</span>
+                        <span class="product-name">{{ p.product_name }}</span>
+                        <span class="date">Last Updated: {{ p.last_updated|date:"d M Y, H:i" }}</span>
+                        <span class="status {% if not p.is_available %}not-available{% else %}available{% endif %}">
+                            {% if p.is_available %}Available{% else %}Not Available{% endif %}
+                        </span>
+                    </div>
+                    {% if p.description %}
+                        <p class="description">Description: {{ p.description }}</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="no-products">No products found.</p>
+    {% endif %}
+{% endblock %}

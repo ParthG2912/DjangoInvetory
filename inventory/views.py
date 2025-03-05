@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.http import JsonResponse
 from .models import Products
 from collections import defaultdict
 
@@ -21,6 +23,12 @@ def home(request):
 def product(request, name):
     products = Products.objects.filter(product_name=name)
     return render(request, "product.html", {"products": products})
+
+@login_required
+def user(request, username):
+    user_obj = get_object_or_404(User, username=username)
+    products = Products.objects.filter(curr_owner=user_obj)
+    return render(request, "user.html", {"user": user_obj, "products": products})
 
 def signup(request):
     if request.method == "POST":
