@@ -18,9 +18,9 @@ def home(request):
     return render(request, "home.html", {"product_list": dict(res)})
 
 @login_required
-def product(request, id):
-    product = get_object_or_404(Products, id=id)
-    return render(request, "product.html", {"product": product})
+def product(request, name):
+    products = Products.objects.filter(product_name=name)
+    return render(request, "product.html", {"products": products})
 
 def signup(request):
     if request.method == "POST":

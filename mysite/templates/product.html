@@ -3,15 +3,27 @@
 {% block title %}Product Details{% endblock %}
 
 {% block content %}
-    {% if product %}
-        <h1>Product: {{ product.product_name|upper }} ({{ product.tag_no|default:"N/A" }})</h1>
-        <ul>
-            <li><strong>Owner:</strong> {{ product.curr_owner|default:"Not Assigned" }}</li>
-            <li><strong>Previous Owner:</strong> {{ product.prev_owner|default:"Unknown" }}</li>
-            <li><strong>Description:</strong> {{ product.description|default:"No description available" }}</li>
-            <li><strong>Last Updated:</strong> {{ product.last_updated|default:"Not Available" }}</li>
+    {% if products %}
+        <h1 style="text-align: center;">{{ products.0.product_name }}</h1>
+
+        <ul class="list">
+            {% for p in products|dictsortreversed:"is_available" %}
+                <li class="list-item">
+                    <div class="row">
+                        <span class="tag-no">#{{ p.tag_no }}</span>
+                        <span class="owner">Owner: {{ p.curr_owner }}</span>
+                        <span class="date">Last Updated: {{ p.last_updated|date:"d M Y, H:i" }}</span>
+                        <span class="status {% if not p.is_available %}not-available{% else %}available{% endif %}">
+                            {% if p.is_available %}Available{% else %}Not Available{% endif %}
+                        </span>
+                    </div>
+                    {% if p.description %}
+                        <p class="description">Description: {{ p.description }}</p>
+                    {% endif %}
+                </li>
+            {% endfor %}
         </ul>
     {% else %}
-        <h2>No product details available.</h2>
+        <p class="no-products">No products found.</p>
     {% endif %}
 {% endblock %}

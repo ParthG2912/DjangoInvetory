@@ -13,7 +13,7 @@
         }
         
         .navbar {
-            background: black;
+            background: blue;
             padding: 15px;
             text-align: center;
             display: flex;
@@ -40,7 +40,7 @@
         .navbar a::before {
             content: "";
             position: absolute;
-            bottom: -2px;
+            bottom: 0;
             left: 0%;
             width: 0%;
             height: 2px;
@@ -79,10 +79,109 @@
             border-radius: 8px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
+
+        h1 {
+            text-align: center;
+        }
+
+        .list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 0;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .list-item {
+            border: 1px solid black;
+            width: 100%;
+            max-width: 500px;
+            list-style: none;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            transition: background 0.3s, color 0.3s;
+            padding: 10px;
+        }        
+
+        .list-item:hover {
+            background: blue;
+            color: white;
+        }
+
+        .list-item a {
+            text-decoration: none;
+            color: black;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex: 1;
+        }
+
+        .list-item:hover * {
+            color: white;
+        }
+
+        .product-name {
+            font-weight: bold;
+        }
+
+        .product-counts {
+            text-align: right;
+        }
+
+        .no-products {
+            font-style: italic;
+            color: red;
+            text-align: center;
+        }
+
+        .row {
+            display: grid;
+            grid-template-columns: 10% 25% 25% 15% 15%;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            padding: 5px 0;
+        }
+
+        .tag-no {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .owner {
+            font-weight: bold;
+            font-size: 16px;
+            color: #222;
+        }
+
+        .date {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .status {
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .available {
+            color: green;
+        }
+
+        .not-available {
+            color: red;
+        }
+
+        .description {
+            font-size: 12px;
+            color: #444;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
-
     <div class="navbar">
         {% if user.is_authenticated %}
             <div class="navbar-links">
@@ -98,6 +197,5 @@
     <div class="container">
         {% block content %}{% endblock %}
     </div>
-
 </body>
 </html>
